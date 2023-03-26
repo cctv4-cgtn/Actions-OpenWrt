@@ -96,7 +96,7 @@ jobs:
       with:
         tag_name: x86.config
         body_path: release.txt
-        files: /work/Actions-OpenWrt/Actions-OpenWrt/openwrt/.config
+        files: /home/runner/work/Actions-OpenWrt/Actions-OpenWrt/openwrt/.config
         
     - name: Download package
       id: package
