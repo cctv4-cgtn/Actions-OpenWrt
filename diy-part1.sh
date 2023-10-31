@@ -17,3 +17,4 @@
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 git clone https://github.com/kenzok8/small-package.git package/small-package
+git clone -b js https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
