@@ -18,5 +18,6 @@
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 echo 'src-git openclash https://github.com/vernesong/OpenClash.git' >>feeds.conf.default
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-git clone --depth 1 https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
-git clone --depth 1 --branch master https://github.com/muink/luci-app-natmapt.git package/luci-app-natmapt
+git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
+git clone https://github.com/muink/luci-app-natmapt.git package/luci-app-natmapt
+git clone https://github.com/muink/openwrt-natmapt.git package/natmapt
