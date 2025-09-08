@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/cctv4-cgtn/immortalwrt-18.06-5.10-ac2100
-  #REPO_BRANCH: ramips
+  REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
