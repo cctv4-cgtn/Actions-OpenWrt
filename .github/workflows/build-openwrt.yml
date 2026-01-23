@@ -35,7 +35,14 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:22.04
+      env:
+        TZ: Asia/Shanghai
+      volumes:
+        - /usr:/mnt/usr
+        - /opt:/mnt/opt
 
     steps:
     - name: Checkout
@@ -45,14 +52,16 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL https://raw.githubusercontent.com/cctv4-cgtn/openwrt-list/master/depends-ubuntu-2204-immortalwrt)
-        sudo -E apt-get -qq autoremove --purge
-        sudo -E apt-get -qq clean
-        sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+        #sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        rm -rf /mnt/usr/share/dotnet /mnt/usr/local/lib/android /mnt/opt/ghc
+        apt-get -qq update
+        apt-get -qq install curl
+        apt-get -qq install $(curl -fsSL https://raw.githubusercontent.com/cctv4-cgtn/openwrt-list/master/depends-ubuntu-2204-immortalwrt)
+        apt-get -qq autoremove --purge
+        apt-get -qq clean
+        #timedatectl set-timezone "$TZ"
+        mkdir -p /workdir
+        chown $USER:$GROUPS /workdir
 
     - name: Clone source code
       working-directory: /workdir
