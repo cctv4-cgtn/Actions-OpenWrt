@@ -27,6 +27,7 @@ env:
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
+  UPLOAD_KERNEL_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
@@ -135,7 +136,6 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        cp -r openwrt/build_dir/target-*/linux-*/ ./
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
@@ -146,6 +146,13 @@ jobs:
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
+
+    - name: Upload kernel directory
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_KERNEL_DIR == 'true'
+      with:
+        name: OpenWrt_kernel${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/build_dir/target-mipsel_24kc_musl/linux-mipsel_24kc
 
     - name: Upload firmware to cowtransfer
       id: cowtransfer
