@@ -152,7 +152,7 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_KERNEL_DIR == 'true'
       with:
         name: OpenWrt_kernel${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt/build_dir/target-mipsel_24kc_musl/linux-mipsel_24kc
+        path: openwrt/build_dir/target-mipsel_24kc_musl/linux-ramips_mt7621
 
     - name: Upload firmware to cowtransfer
       id: cowtransfer
